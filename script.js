@@ -65,13 +65,20 @@ $(document).ready(()=>{
 		$("#cha").text(scores[5]);
 	}
 
+	function checkSign(score){
+		if (score > 0){
+			score = "+" + score.toString();
+		}
+		return score;
+	}
+
 	function displayScoreModifiers(scores){
-		$("#str-mod").text(scores[0]);
-		$("#dex-mod").text(scores[1]);
-		$("#con-mod").text(scores[2]);
-		$("#int-mod").text(scores[3]);
-		$("#wis-mod").text(scores[4]);
-		$("#cha-mod").text(scores[5]);
+		$("#str-mod").text(checkSign(scores[0]));
+		$("#dex-mod").text(checkSign(scores[1]));
+		$("#con-mod").text(checkSign(scores[2]));
+		$("#int-mod").text(checkSign(scores[3]));
+		$("#wis-mod").text(checkSign(scores[4]));
+		$("#cha-mod").text(checkSign(scores[5]));
 	}
 
 	function setScoreModifiers(scoresArr){

@@ -8,40 +8,51 @@
 </head>
 <body>
 	<h1>Character Sheet</h1>
-	<section id="ability-scores">
-		<table>
-			<tr>
-				<th>Strength:</th>
-				<th id="str"></th>
-				<th id="str-mod"></th>
-			</tr>
-			<tr>
-				<th>Dexterity:</th>
-				<th id="dex"></th>
-				<th id="dex-mod"></th>
-			</tr>
-			<tr>
-				<th>Constitution:</th>
-				<th id="con"></th>
-				<th id="con-mod"></th>
-			</tr>
-			<tr>
-				<th>Intelligence:</th>
-				<th id="int"></th>
-				<th id="int-mod"></th>
-			</tr>
-			<tr>
-				<th>Wisdom:</th>
-				<th id="wis"></th>
-				<th id="wis-mod"></th>
-			</tr>
-			<tr>
-				<th>Charisma:</th>
-				<th id="cha"></th>
-				<th id="cha-mod"></th>
-			</tr>
-		</table>
-	</section>
+	<div id="top-section">
+		<section id="ability-scores">
+			<table>
+				<tr>
+					<th>Strength:</th>
+					<th id="str"></th>
+					<th id="str-mod"></th>
+				</tr>
+				<tr>
+					<th>Dexterity:</th>
+					<th id="dex"></th>
+					<th id="dex-mod"></th>
+				</tr>
+				<tr>
+					<th>Constitution:</th>
+					<th id="con"></th>
+					<th id="con-mod"></th>
+				</tr>
+				<tr>
+					<th>Intelligence:</th>
+					<th id="int"></th>
+					<th id="int-mod"></th>
+				</tr>
+				<tr>
+					<th>Wisdom:</th>
+					<th id="wis"></th>
+					<th id="wis-mod"></th>
+				</tr>
+				<tr>
+					<th>Charisma:</th>
+					<th id="cha"></th>
+					<th id="cha-mod"></th>
+				</tr>
+			</table>
+		</section>
+		<section id="character-basics">
+			<p id="name-label">Name: <span id = "name"></span></p>
+			<p id="race-label">Race: <span id = "race"></span></p>
+			<p id="alignment-label">Alignment: <span id = "alignment"></span></p>
+			<p id="size-label">Size: <span id = "size"></span></p>
+			<p id="gender-label">Gender: <span id = "gender"></span></p>
+			<p id="age-label">Age: <span id = "age"></span></p>
+			<p id="level-label">Level: <span id = "level"></span></p>
+		</section>
+	</div>
 	<button id = "scores-roll">Roll Character</button>
 </body>
 </html>
