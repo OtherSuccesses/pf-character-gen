@@ -8,13 +8,30 @@ $(document).ready(()=>{
 			constitution : 0,
 			intelligence : 0,
 			wisdom : 0,
-			charisma : 0,
+			charisma : 0
+		},
+		modifiers: {
+			strength : 0,
+			dexterity : 0,
+			constitution : 0,
+			intelligence : 0,
+			wisdom : 0,
+			charisma : 0
 		}
 	}
 
 //Score reduction
 	function sumScores(total, add){
 		return (total + add);
+	}
+
+	function setScores(scoresArr){
+		player.scores.strength = scoresArr[0];
+		player.scores.dexterity = scoresArr[1];
+		player.scores.constitution = scoresArr[2];
+		player.scores.intelligence = scoresArr[3];
+		player.scores.wisdom = scoresArr[4];
+		player.scores.charisma = scoresArr[5];
 	}
 
 //rolls the attribute scores 
@@ -30,12 +47,11 @@ $(document).ready(()=>{
 			}
 			tempValues.sort();
 			tempValues.splice(0, 1);
-			console.log(tempValues);
 			tempTotal = tempValues.reduce(sumScores, 0);
-			console.log("Temp Total: " + tempTotal);
 			scoresArr.push(tempTotal);
 		}
-		setScores();
+		setScores(scoresArr);
+		calculateScoreModifiers(scoresArr);
 		return scoresArr;
 	}
 
@@ -47,6 +63,37 @@ $(document).ready(()=>{
 		$("#int").text(scores[3]);
 		$("#wis").text(scores[4]);
 		$("#cha").text(scores[5]);
+	}
+
+	function displayScoreModifiers(scores){
+		$("#str-mod").text(scores[0]);
+		$("#dex-mod").text(scores[1]);
+		$("#con-mod").text(scores[2]);
+		$("#int-mod").text(scores[3]);
+		$("#wis-mod").text(scores[4]);
+		$("#cha-mod").text(scores[5]);
+	}
+
+	function setScoreModifiers(scoresArr){
+		player.modifiers.strength = scoresArr[0];
+		player.modifiers.dexterity = scoresArr[1];
+		player.modifiers.constitution = scoresArr[2];
+		player.modifiers.intelligence = scoresArr[3];
+		player.modifiers.wisdom = scoresArr[4];
+		player.modifiers.charisma = scoresArr[5];
+	}
+
+	//Converting scores to Appropriate modifiers
+	function calculateScoreModifiers(scores){
+		let scoreMods = [];
+		let mod = 0;
+		for (let i = 0; i < scores.length; i++){
+			mod = Math.floor((scores[i]-10)/2);
+			scoreMods.push(mod);
+		}
+		console.log("Score modifiers" + scoreMods);
+		setScoreModifiers(scoreMods);
+		displayScoreModifiers(scoreMods);
 	}
 
 //On click makes all the functions happen
