@@ -17,7 +17,21 @@ $(document).ready(()=>{
 			intelligence : 0,
 			wisdom : 0,
 			charisma : 0
-		}
+		},
+		race: "N/A",
+		size: "Medium",
+		baseSpeed: "30",
+		languages: ["Common"]
+	}
+
+	function start(){
+		rollScores();
+		selectRace();
+		calculateScoreModifiers();
+		displayScores();
+		displayScoreModifiers();
+		displayBasicData();
+		console.log(player);
 	}
 
 //Score reduction
@@ -25,6 +39,7 @@ $(document).ready(()=>{
 		return (total + add);
 	}
 
+//Puts score array into the player object
 	function setScores(scoresArr){
 		player.scores.strength = scoresArr[0];
 		player.scores.dexterity = scoresArr[1];
@@ -32,6 +47,100 @@ $(document).ready(()=>{
 		player.scores.intelligence = scoresArr[3];
 		player.scores.wisdom = scoresArr[4];
 		player.scores.charisma = scoresArr[5];
+	}
+
+//Random race generation
+	function selectRace(){
+		let race = "";
+		let selector = Math.floor(Math.random()*100)+1;
+		console.log(selector);
+		switch (true){
+			case (selector < 15):
+				race = "Dwarf";
+				break;
+			case (selector < 30):
+				race = "Elf";
+				break;
+			case (selector < 40):
+				race = "Gnome";
+				break;
+			case (selector < 50):
+				race = "Halfling";
+				break;
+			case (selector < 60):
+				race = "Half-Elf";
+				break;
+			case (selector < 70):
+				race = "Half-Orc";
+				break;
+			default:
+				race = "Human";
+				break;
+		}
+		player.race = race;
+		racePlayerAdjustments(race);
+	}
+
+	function randAbility(){
+		let die = Math.floor(Math.random()*6);
+		switch (die){
+			case 0:
+				return "strength";
+				break;
+			case 1:
+				return "dexterity";
+				break;
+			case 2:
+				return "constitution";
+				break;
+			case 3:
+				return "intelligence";
+				break;
+			case 4:
+				return "wisdom";
+				break;
+			default:
+				return "charisma";
+				break;
+		}
+	}
+
+	function racePlayerAdjustments(race){
+		switch (race){
+			case "Dwarf":
+				player.scores.strength += 2;
+				player.scores.constitution += 2;
+				player.scores.charisma -= 2;
+				player.baseSpeed = 20;
+				player.size = "Medium";
+				player.languages = ["Common", "Dwarven"];
+				break;
+			case "Elf":
+				player.scores.dexterity += 2;
+				player.scores.intelligence += 2;
+				player.scores.constitution -= 2;
+				player.baseSpeed = 30;
+				player.size = "Medium";
+				player.languages = ["Common", "Elven"];
+				break;
+			case "Gnome":
+				player.scores.constitution += 2;
+				player.scores.charisma += 2;
+				player.scores.strength -= 2;
+				player.baseSpeed = 20;
+				player.size = "Small";
+				player.languages = ["Common", "Gnome", "Sylvan"]
+				break;
+			case "Half-Elf":
+				ability = randAbility();
+				player.scores.ability += 2;
+				player.baseSpeed = 30;
+				player.size = "Medium";
+				player.languages = ["Common", "Elven"];
+			default:
+				console.log("Something happened with racial adjustments");
+				break;
+		}
 	}
 
 //rolls the attribute scores 
@@ -50,13 +159,17 @@ $(document).ready(()=>{
 			tempTotal = tempValues.reduce(sumScores, 0);
 			scoresArr.push(tempTotal);
 		}
+		console.log("Base scores: " + scoresArr);
 		setScores(scoresArr);
-		calculateScoreModifiers(scoresArr);
-		return scoresArr;
 	}
 
 //Actually puts scores to screen
-	function displayScores(scores){
+	function displayScores(){
+		let scores = [];
+		let x;
+		for(x in player.scores){
+			scores.push(player.scores[x]);
+		}
 		$("#str").text(scores[0]);
 		$("#dex").text(scores[1]);
 		$("#con").text(scores[2]);
@@ -72,13 +185,23 @@ $(document).ready(()=>{
 		return score;
 	}
 
-	function displayScoreModifiers(scores){
+	function displayScoreModifiers(){
+		let scores = [];
+		let x;
+		for(x in player.modifiers){
+			scores.push(player.modifiers[x]);
+		}
 		$("#str-mod").text(checkSign(scores[0]));
 		$("#dex-mod").text(checkSign(scores[1]));
 		$("#con-mod").text(checkSign(scores[2]));
 		$("#int-mod").text(checkSign(scores[3]));
 		$("#wis-mod").text(checkSign(scores[4]));
 		$("#cha-mod").text(checkSign(scores[5]));
+	}
+
+	function displayBasicData(){
+		$("#size").text(player.size);
+		$("#race").text(player.race);
 	}
 
 	function setScoreModifiers(scoresArr){
@@ -91,21 +214,23 @@ $(document).ready(()=>{
 	}
 
 	//Converting scores to Appropriate modifiers
-	function calculateScoreModifiers(scores){
+	function calculateScoreModifiers(){
+		let scores = [];
+		let x;
+		for(x in player.scores){
+			scores.push(player.scores[x]);
+		}
 		let scoreMods = [];
 		let mod = 0;
 		for (let i = 0; i < scores.length; i++){
 			mod = Math.floor((scores[i]-10)/2);
 			scoreMods.push(mod);
 		}
-		console.log("Score modifiers" + scoreMods);
 		setScoreModifiers(scoreMods);
-		displayScoreModifiers(scoreMods);
 	}
 
 //On click makes all the functions happen
 	$("#scores-roll").on("click",()=>{
-		let scores = rollScores();
-		displayScores(scores);
+		start();
 	});
 });
