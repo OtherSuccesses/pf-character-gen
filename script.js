@@ -1,5 +1,7 @@
 $(document).ready(()=>{
 
+	let languagesList = ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Common", "Draconic", "Dwarven", "Elven", "Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", "Infernal", "Orc", "Sylvan", "Terran", "Undercommon"]; 
+
 //Player object to hold all the data.
 	let player = {
 		scores : {
@@ -25,13 +27,20 @@ $(document).ready(()=>{
 	}
 
 	function start(){
+		clearLanguages();
 		rollScores();
 		selectRace();
 		calculateScoreModifiers();
+		numberLanguages();
 		displayScores();
 		displayScoreModifiers();
 		displayBasicData();
+		displayLanguages();
 		console.log(player);
+	}
+
+	function clearLanguages(){
+		$("#languages").text("");
 	}
 
 //Score reduction
@@ -81,6 +90,26 @@ $(document).ready(()=>{
 		racePlayerAdjustments(race);
 	}
 
+//Languages Selection
+	function numberLanguages(){
+		if (player.modifiers.intelligence > 0){
+			for(i = 0; i < player.modifiers.intelligence; i++){
+				selectPlayerLanguages();
+			}
+		}
+	}
+
+	function selectPlayerLanguages(){
+		let tempLanguage = languagesList[Math.floor(Math.random()*languagesList.length)];
+		if (player.languages.indexOf(tempLanguage) !== -1){
+			selectPlayerLanguages();
+		}
+		else{
+			player.languages.push(tempLanguage);
+		}
+	}
+
+//Function to select an ability at random
 	function randAbility(){
 		let die = Math.floor(Math.random()*6);
 		switch (die){
@@ -106,6 +135,7 @@ $(document).ready(()=>{
 	}
 
 	function racePlayerAdjustments(race){
+		console.log(race);
 		switch (race){
 			case "Dwarf":
 				player.scores.strength += 2;
@@ -129,14 +159,36 @@ $(document).ready(()=>{
 				player.scores.strength -= 2;
 				player.baseSpeed = 20;
 				player.size = "Small";
-				player.languages = ["Common", "Gnome", "Sylvan"]
+				player.languages = ["Common", "Gnome", "Sylvan"];
 				break;
 			case "Half-Elf":
 				ability = randAbility();
-				player.scores.ability += 2;
+				player.scores[ability] += 2;
 				player.baseSpeed = 30;
 				player.size = "Medium";
 				player.languages = ["Common", "Elven"];
+				break;
+			case "Half-Orc":
+				ability = randAbility();
+				player.scores[ability] += 2;
+				player.baseSpeed = 30;
+				player.size = "Medium";
+				player.languages = ["Common", "Orc"];
+				break;
+			case "Halfling":
+				player.scores.dexterity += 2;
+				player.scores.charisma += 2;
+				player.scores.strength -= 2;
+				player.baseSpeed = 20;
+				player.size = "Small";
+				player.languages = ["Common", "Halfling"];
+				break;
+			case "Human":
+				ability = randAbility();
+				player.scores[ability] += 2;
+				player.baseSpeed = 30;
+				player.size = "Medium";
+				player.languages = ["Common"];
 			default:
 				console.log("Something happened with racial adjustments");
 				break;
@@ -163,6 +215,7 @@ $(document).ready(()=>{
 		setScores(scoresArr);
 	}
 
+//Display functions-----------------------------------------------------
 //Actually puts scores to screen
 	function displayScores(){
 		let scores = [];
@@ -187,7 +240,6 @@ $(document).ready(()=>{
 
 	function displayScoreModifiers(){
 		let scores = [];
-		let x;
 		for(x in player.modifiers){
 			scores.push(player.modifiers[x]);
 		}
@@ -199,10 +251,21 @@ $(document).ready(()=>{
 		$("#cha-mod").text(checkSign(scores[5]));
 	}
 
+	function displayLanguages(){
+		let languageText ="";
+		for(x in player.languages){
+			languageText = languageText + player.languages[x] + " ";
+		}
+		console.log(languageText);
+		$("#languages").text(languageText);
+	}
+
 	function displayBasicData(){
 		$("#size").text(player.size);
 		$("#race").text(player.race);
 	}
+
+//End Display Functions---------------------------------------
 
 	function setScoreModifiers(scoresArr){
 		player.modifiers.strength = scoresArr[0];
