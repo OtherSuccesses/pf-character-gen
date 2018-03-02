@@ -1,6 +1,7 @@
 $(document).ready(()=>{
 
 	let languagesList = ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Common", "Draconic", "Dwarven", "Elven", "Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", "Infernal", "Orc", "Sylvan", "Terran", "Undercommon"]; 
+	let classList = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorceror", "Wizard"];
 
 //Player object to hold all the data.
 	let player = {
@@ -23,7 +24,9 @@ $(document).ready(()=>{
 		race: "N/A",
 		size: "Medium",
 		baseSpeed: "30",
-		languages: ["Common"]
+		languages: ["Common"],
+		favoredClasses: [],
+		classes:{}
 	}
 
 	function start(){
@@ -32,16 +35,126 @@ $(document).ready(()=>{
 		selectRace();
 		calculateScoreModifiers();
 		numberLanguages();
+		selectFavoredClass();
+		selectClass();
 		displayScores();
 		displayScoreModifiers();
 		displayBasicData();
 		displayLanguages();
+		displayClass();
 		console.log(player);
 	}
 
 	function clearLanguages(){
 		$("#languages").text("");
 	}
+
+//Class Selection Functions----------------------------------------------------------------
+	function attRangeForClassGeneration(att){
+		att = att-10;
+		if (att<0){
+			att = 0;
+		}
+		else{
+			att=att*att;
+		}
+		return att;
+	}
+
+	function getCharacterClass(squaresArray, sumSquares){
+		let barbarian = squaresArray[0]+squaresArray[1]+squaresArray[2];
+		let bard = squaresArray[1]+squaresArray[3]+squaresArray[5]+barbarian;
+		let cleric = squaresArray[4]+squaresArray[5]+squaresArray[0]+bard;
+		let druid = squaresArray[4]+squaresArray[1]+squaresArray[2]+cleric;
+		let fighter = barbarian + druid + (player.scores.strength-9);
+		let monk = squaresArray[0]+squaresArray[1]+squaresArray[4]+fighter;
+		let paladin = squaresArray[5]+squaresArray[0]+squaresArray[2]+monk;
+		let ranger = monk - fighter + paladin;
+		let rogue = druid - cleric + ranger;
+		let sorceror = rogue + squaresArray[5] + squaresArray[1] + squaresArray[2];
+		let wizard = sorceror + squaresArray[3] + squaresArray[2] + squaresArray [1];
+		console.log(barbarian);
+		console.log(bard);
+		console.log(cleric);
+		console.log(druid);
+		console.log(fighter);
+		console.log(monk);
+		console.log(paladin);
+		console.log(ranger);
+		console.log(rogue);
+		console.log(sorceror);
+		console.log(wizard);	
+		let tempClass = "";
+		let selector = Math.floor(Math.random()*wizard);
+		console.log("The number for class gen: " + selector)
+		switch(true){
+			case (selector <= barbarian):
+				tempClass="Barbarian";
+				break;
+			case (selector <= bard):
+				tempClass="Bard";
+				break;
+			case (selector <= cleric):
+				tempClass="Cleric";
+				break;
+			case (selector <= druid):
+				tempClass="Druid";
+				break;
+			case (selector <= fighter):
+				tempClass="Fighter";
+				break;
+			case (selector <= monk):
+				tempClass="Monk";
+				break;
+			case (selector <= paladin):
+				tempClass="Paladin";
+				break;
+			case (selector <= ranger):
+				tempClass="Ranger";
+				break;
+			case (selector <= rogue):
+				tempClass="Rogue";
+				break;
+			case (selector <= sorceror):
+				tempClass="Sorceror";
+				break;
+			case (selector <= wizard):
+				tempClass="Wizard";
+				break;
+			
+		}
+		return tempClass;
+	}
+
+	function randomClass(){
+		let attObj = [];
+		attObj[0] = player.scores.strength;
+		attObj[1] = player.scores.dexterity;
+		attObj[2] = player.scores.constitution;
+		attObj[3] = player.scores.intelligence;
+		attObj[4] = player.scores.wisdom;
+		attObj[5] = player.scores.charisma;
+		let attObjSquare = Array.from(attObj);
+		for(i = 0; i < 6; i++){
+			attObjSquare[i] = attRangeForClassGeneration(attObjSquare[i]); 
+		}
+		let squareTotals = attObjSquare.reduce(sumScores, 0);
+
+		let tempClass = getCharacterClass(attObjSquare, squareTotals)
+		return tempClass;	
+	}
+
+	function selectFavoredClass(){
+		let tempFavoredClass = randomClass();
+		console.log(tempFavoredClass);
+		player.favoredClasses.push(tempFavoredClass);
+	}
+
+	function selectClass(){
+		player.classes[player.favoredClasses[0]] = 1;
+	}
+
+//End Class Selection Functions-------------------------------------------------------------
 
 //Score reduction
 	function sumScores(total, add){
@@ -64,22 +177,22 @@ $(document).ready(()=>{
 		let selector = Math.floor(Math.random()*100)+1;
 		console.log(selector);
 		switch (true){
-			case (selector < 15):
+			case (selector <= 15):
 				race = "Dwarf";
 				break;
-			case (selector < 30):
+			case (selector <= 30):
 				race = "Elf";
 				break;
-			case (selector < 40):
+			case (selector <= 40):
 				race = "Gnome";
 				break;
-			case (selector < 50):
+			case (selector <= 50):
 				race = "Halfling";
 				break;
-			case (selector < 60):
+			case (selector <= 60):
 				race = "Half-Elf";
 				break;
-			case (selector < 70):
+			case (selector <= 70):
 				race = "Half-Orc";
 				break;
 			default:
@@ -263,6 +376,11 @@ $(document).ready(()=>{
 	function displayBasicData(){
 		$("#size").text(player.size);
 		$("#race").text(player.race);
+	}
+
+	function displayClass(){
+		$("#preferred-classes").text(player.favoredClass[0]);
+		$("#classes").text(player.classes);
 	}
 
 //End Display Functions---------------------------------------
