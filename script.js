@@ -26,7 +26,8 @@ $(document).ready(()=>{
 		baseSpeed: "30",
 		languages: ["Common"],
 		favoredClasses: [],
-		classes:{}
+		classes:[],
+		classLevels:[]
 	}
 
 	function start(){
@@ -151,7 +152,8 @@ $(document).ready(()=>{
 	}
 
 	function selectClass(){
-		player.classes[player.favoredClasses[0]] = 1;
+		player.classes.push(player.favoredClasses[0]);
+		player.classLevels.push(1);
 	}
 
 //End Class Selection Functions-------------------------------------------------------------
@@ -379,8 +381,13 @@ $(document).ready(()=>{
 	}
 
 	function displayClass(){
-		$("#preferred-classes").text(player.favoredClass[0]);
-		$("#classes").text(player.classes);
+		let classText = "";
+		for(i = 0; i < player.classes.length; i++){
+				classText += player.classes[i] + ": ";
+				classText += player.classLevels[i] + " "; 
+		}
+		$("#preferred-classes").text(player.favoredClasses[0]);
+		$("#classes").text(classText);
 	}
 
 //End Display Functions---------------------------------------
