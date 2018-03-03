@@ -27,27 +27,55 @@ $(document).ready(()=>{
 		languages: ["Common"],
 		favoredClasses: [],
 		classes:[],
-		classLevels:[]
+		gender: "",
+		alignment: "",
+		maxHitPoints: 0,
+		currentHitPoints: 0,
+		skillRanks: []
 	}
 
 	function start(){
 		clearLanguages();
+		clearClasses();
 		rollScores();
 		selectRace();
 		calculateScoreModifiers();
 		numberLanguages();
 		selectFavoredClass();
 		selectClass();
+		selectAlignment();
+		selectGender();
 		displayScores();
 		displayScoreModifiers();
 		displayBasicData();
 		displayLanguages();
 		displayClass();
+		displayHP();
 		console.log(player);
+	}
+
+	function roll(max){
+		return Math.floor(Math.random()*max)
 	}
 
 	function clearLanguages(){
 		$("#languages").text("");
+	}
+
+	function clearClasses(){
+		player.favoredClasses = [];
+		player.classes = [];
+		player.classLevels = [];
+		$("#preferred-classes").text("");
+		$("#classes").text("");
+	}
+
+	function hitDieGen(max){
+		player.maxHitPoints = roll(max)+1;
+		player.maxHitPoints += player.modifiers.constitution;
+		if(player.maxHitPoints < 1){
+			player.maxHitPoints = 1;
+		}
 	}
 
 //Class Selection Functions----------------------------------------------------------------
@@ -63,6 +91,7 @@ $(document).ready(()=>{
 	}
 
 	function getCharacterClass(squaresArray, sumSquares){
+		console.log("the squares array: " + squaresArray);
 		let barbarian = squaresArray[0]+squaresArray[1]+squaresArray[2];
 		let bard = squaresArray[1]+squaresArray[3]+squaresArray[5]+barbarian;
 		let cleric = squaresArray[4]+squaresArray[5]+squaresArray[0]+bard;
@@ -73,56 +102,126 @@ $(document).ready(()=>{
 		let ranger = monk - fighter + paladin;
 		let rogue = druid - cleric + ranger;
 		let sorceror = rogue + squaresArray[5] + squaresArray[1] + squaresArray[2];
-		let wizard = sorceror + squaresArray[3] + squaresArray[2] + squaresArray [1];
-		console.log(barbarian);
-		console.log(bard);
-		console.log(cleric);
-		console.log(druid);
-		console.log(fighter);
-		console.log(monk);
-		console.log(paladin);
-		console.log(ranger);
-		console.log(rogue);
-		console.log(sorceror);
-		console.log(wizard);	
+		let wizard = sorceror + squaresArray[3] + squaresArray[2] + squaresArray [1];	
 		let tempClass = "";
-		let selector = Math.floor(Math.random()*wizard);
-		console.log("The number for class gen: " + selector)
+		let selector = roll(wizard);
+		console.log("The number for class gen: " + selector);
+		console.log(barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorceror, wizard);
 		switch(true){
 			case (selector <= barbarian):
-				tempClass="Barbarian";
+				if (player.scores.strength < 12 && player.scores.constitution < 10){
+					console.log("Attempt Barbarian");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Barbarian";
+					hitDieGen(12);
+				}
 				break;
 			case (selector <= bard):
-				tempClass="Bard";
+				if (player.scores.charisma < 13 || player.scores.dexterity < 10){
+					console.log("Attempt Bard");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Bard";
+					hitDieGen(8);
+				}
 				break;
 			case (selector <= cleric):
-				tempClass="Cleric";
+				if (player.scores.wisdom < 12){
+					console.log("Attempt Cleric");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Cleric";
+					hitDieGen(8);
+				}
 				break;
 			case (selector <= druid):
-				tempClass="Druid";
+				if (player.scores.wisdom < 12){
+					console.log("Attempt Druid");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Druid";
+					hitDieGen(8);
+					player.languages.push("Druidic");
+				}
 				break;
 			case (selector <= fighter):
-				tempClass="Fighter";
+				if (player.scores.strength < 12){
+					console.log("Attempt Fighter");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Fighter";
+					hitDieGen(10);
+				}
 				break;
 			case (selector <= monk):
-				tempClass="Monk";
+				if (player.scores.strength < 12 || player.scores.wisdom < 10 || player.scores.dexterity < 12){
+					console.log("Attempt Monk");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Monk";
+					hitDieGen(8);
+				}
 				break;
 			case (selector <= paladin):
-				tempClass="Paladin";
+				if (player.scores.strength < 12 || player.scores.charisma < 13){
+					console.log("Attempt Paladin");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Paladin";
+					hitDieGen(10);
+				}
 				break;
 			case (selector <= ranger):
-				tempClass="Ranger";
+				if (player.scores.strength < 12 || player.scores.dexterity < 10){
+					console.log("Attempt Ranger");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Ranger";
+					hitDieGen(10);
+				}
 				break;
 			case (selector <= rogue):
-				tempClass="Rogue";
+				if (player.scores.dexterity < 12){
+					console.log("Attempt Rogue");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Rogue";
+					hitDieGen(8);
+				}
 				break;
 			case (selector <= sorceror):
-				tempClass="Sorceror";
+				if (player.scores.charisma < 13){
+					console.log("Attempt Sorceror");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Sorceror";
+					hitDieGen(6);
+				}
 				break;
 			case (selector <= wizard):
-				tempClass="Wizard";
+				if (player.scores.intelligence < 13){
+					console.log("Attempt Wizard");
+					getCharacterClass(squaresArray);
+				}
+				else{
+					tempClass="Wizard";
+					hitDieGen(6);
+				}
 				break;
-			
+			default:
+				tempClass = "Dumpster Fire";
+				break;
 		}
 		return tempClass;
 	}
@@ -148,15 +247,46 @@ $(document).ready(()=>{
 	function selectFavoredClass(){
 		let tempFavoredClass = randomClass();
 		console.log(tempFavoredClass);
-		player.favoredClasses.push(tempFavoredClass);
+		//Check half-elf repetition of second preferred class
+		if (tempFavoredClass == player.favoredClasses[0]){
+			selectFavoredClass();
+		}
+		else{
+			player.favoredClasses.push(tempFavoredClass);
+			if(player.class == "Half-Elf" && player.favoredClasses.length < 2){
+				selectFavoredClass();
+			}
+		}
 	}
 
 	function selectClass(){
-		player.classes.push(player.favoredClasses[0]);
-		player.classLevels.push(1);
+		player.classes.push({
+			class: player.favoredClasses[0],
+			level: 1
+		});
 	}
 
 //End Class Selection Functions-------------------------------------------------------------
+
+//Ability Scores generation-----------------------------------------------------------------
+
+//rolls the attribute scores 
+	function rollScores(){
+		scoresArr = [];
+		for (let i = 0; i < 6; i++){
+			tempValues = [];
+			tempTotal = 0;
+			for (let j = 0; j < 4; j++){
+				tempValues.push(roll(6)+1);
+			}
+			tempValues.sort();
+			tempValues.splice(0, 1);
+			tempTotal = tempValues.reduce(sumScores, 0);
+			scoresArr.push(tempTotal);
+		}
+		console.log("Base scores: " + scoresArr);
+		setScores(scoresArr);
+	}
 
 //Score reduction
 	function sumScores(total, add){
@@ -173,10 +303,37 @@ $(document).ready(()=>{
 		player.scores.charisma = scoresArr[5];
 	}
 
+//Function to select an ability at random
+	function randAbility(){
+		let die = roll(6);
+		switch (die){
+			case 0:
+				return "strength";
+				break;
+			case 1:
+				return "dexterity";
+				break;
+			case 2:
+				return "constitution";
+				break;
+			case 3:
+				return "intelligence";
+				break;
+			case 4:
+				return "wisdom";
+				break;
+			default:
+				return "charisma";
+				break;
+		}
+	}
+//End Ability Scores------------------------------------------------------------------
+
+//Race generation functions--------------------------------------------------------------
 //Random race generation
 	function selectRace(){
 		let race = "";
-		let selector = Math.floor(Math.random()*100)+1;
+		let selector = roll(100)+1;
 		console.log(selector);
 		switch (true){
 			case (selector <= 15):
@@ -205,50 +362,7 @@ $(document).ready(()=>{
 		racePlayerAdjustments(race);
 	}
 
-//Languages Selection
-	function numberLanguages(){
-		if (player.modifiers.intelligence > 0){
-			for(i = 0; i < player.modifiers.intelligence; i++){
-				selectPlayerLanguages();
-			}
-		}
-	}
-
-	function selectPlayerLanguages(){
-		let tempLanguage = languagesList[Math.floor(Math.random()*languagesList.length)];
-		if (player.languages.indexOf(tempLanguage) !== -1){
-			selectPlayerLanguages();
-		}
-		else{
-			player.languages.push(tempLanguage);
-		}
-	}
-
-//Function to select an ability at random
-	function randAbility(){
-		let die = Math.floor(Math.random()*6);
-		switch (die){
-			case 0:
-				return "strength";
-				break;
-			case 1:
-				return "dexterity";
-				break;
-			case 2:
-				return "constitution";
-				break;
-			case 3:
-				return "intelligence";
-				break;
-			case 4:
-				return "wisdom";
-				break;
-			default:
-				return "charisma";
-				break;
-		}
-	}
-
+//Adjust the stats from race generation
 	function racePlayerAdjustments(race){
 		console.log(race);
 		switch (race){
@@ -304,31 +418,104 @@ $(document).ready(()=>{
 				player.baseSpeed = 30;
 				player.size = "Medium";
 				player.languages = ["Common"];
+				break;
 			default:
 				console.log("Something happened with racial adjustments");
 				break;
 		}
 	}
 
-//rolls the attribute scores 
-	function rollScores(){
-		scoresArr = [];
-		for (let i = 0; i < 6; i++){
-			tempValues = [];
-			tempTotal = 0;
-			for (let j = 0; j < 4; j++){
-				roll = 0;
-				roll = Math.floor(Math.random()*6)+1;
-				tempValues.push(roll);
-			}
-			tempValues.sort();
-			tempValues.splice(0, 1);
-			tempTotal = tempValues.reduce(sumScores, 0);
-			scoresArr.push(tempTotal);
-		}
-		console.log("Base scores: " + scoresArr);
-		setScores(scoresArr);
+	function setScoreModifiers(scoresArr){
+		player.modifiers.strength = scoresArr[0];
+		player.modifiers.dexterity = scoresArr[1];
+		player.modifiers.constitution = scoresArr[2];
+		player.modifiers.intelligence = scoresArr[3];
+		player.modifiers.wisdom = scoresArr[4];
+		player.modifiers.charisma = scoresArr[5];
 	}
+
+	//Converting scores to Appropriate modifiers
+	function calculateScoreModifiers(){
+		let scores = [];
+		let x;
+		for(x in player.scores){
+			scores.push(player.scores[x]);
+		}
+		let scoreMods = [];
+		let mod = 0;
+		for (let i = 0; i < scores.length; i++){
+			mod = Math.floor((scores[i]-10)/2);
+			scoreMods.push(mod);
+		}
+		setScoreModifiers(scoreMods);
+	}
+
+//End Attribute Generation--------------------------------------------------------
+
+//Alignment Generation------------------------------------------------------------
+	
+	function selectAlignment(){
+		let tempAlignment = "";
+		let order = roll(3);
+		let morality = roll(3);
+		if (order == 0){
+			order = "Lawful";
+		} 
+		else if (order == 1){
+			order = "Neutral";
+		}
+		else{
+			order = "Chaotic";
+		}
+		if (morality == 0){
+			morality = "Good";
+		} 
+		else if (morality == 1){
+			morality = "Neutral";
+		}
+		else{
+			morality = "Evil";
+		}
+		if (morality == order){
+			tempAlignment = "Neutral";
+		}
+		else{
+			tempAlignment = order + " " + morality;
+		}
+		player.alignment = tempAlignment;
+	}
+//End Alignment Generation----------------------------------------------------------
+
+//Gender Generation-----------------------------------------------------------------
+	function selectGender(){
+		let number = roll(2);
+		if (number == 1){
+			player.gender = "Male";
+		}
+		else{
+			player.gender = "Female";
+		}
+	}
+
+//Languages Selection---------------------------------------------------------------
+	function numberLanguages(){
+		if (player.modifiers.intelligence > 0){
+			for(i = 0; i < player.modifiers.intelligence; i++){
+				selectPlayerLanguages();
+			}
+		}
+	}
+
+	function selectPlayerLanguages(){
+		let tempLanguage = languagesList[roll(languagesList.length)];
+		if (player.languages.indexOf(tempLanguage) !== -1){
+			selectPlayerLanguages();
+		}
+		else{
+			player.languages.push(tempLanguage);
+		}
+	}
+//End Language Generation--------------------------------------------------
 
 //Display functions-----------------------------------------------------
 //Actually puts scores to screen
@@ -378,44 +565,27 @@ $(document).ready(()=>{
 	function displayBasicData(){
 		$("#size").text(player.size);
 		$("#race").text(player.race);
+		$("#alignment").text(player.alignment);
+		$("#gender").text(player.gender);
 	}
 
 	function displayClass(){
 		let classText = "";
 		for(i = 0; i < player.classes.length; i++){
-				classText += player.classes[i] + ": ";
-				classText += player.classLevels[i] + " "; 
+				classText += player.classes[i].class + ": ";
+				classText += player.classes[i].level + " "; 
 		}
 		$("#preferred-classes").text(player.favoredClasses[0]);
 		$("#classes").text(classText);
 	}
 
+	function displayHP(){
+		$("#max-hp").text(player.maxHitPoints);
+	}
+
 //End Display Functions---------------------------------------
 
-	function setScoreModifiers(scoresArr){
-		player.modifiers.strength = scoresArr[0];
-		player.modifiers.dexterity = scoresArr[1];
-		player.modifiers.constitution = scoresArr[2];
-		player.modifiers.intelligence = scoresArr[3];
-		player.modifiers.wisdom = scoresArr[4];
-		player.modifiers.charisma = scoresArr[5];
-	}
 
-	//Converting scores to Appropriate modifiers
-	function calculateScoreModifiers(){
-		let scores = [];
-		let x;
-		for(x in player.scores){
-			scores.push(player.scores[x]);
-		}
-		let scoreMods = [];
-		let mod = 0;
-		for (let i = 0; i < scores.length; i++){
-			mod = Math.floor((scores[i]-10)/2);
-			scoreMods.push(mod);
-		}
-		setScoreModifiers(scoreMods);
-	}
 
 //On click makes all the functions happen
 	$("#scores-roll").on("click",()=>{
