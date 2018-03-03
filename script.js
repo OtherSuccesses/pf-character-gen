@@ -427,7 +427,7 @@ $(document).ready(()=>{
 	function selectAlignment(){
 		let tempAlignment = "";
 		let order = roll(3);
-		let morality = roll(3);
+		let morality = roll(6);
 		if (order == 0){
 			order = "Lawful";
 		} 
@@ -437,10 +437,10 @@ $(document).ready(()=>{
 		else{
 			order = "Chaotic";
 		}
-		if (morality == 0){
+		if (morality <= 3){
 			morality = "Good";
 		} 
-		else if (morality == 1){
+		else if (morality <= 5){
 			morality = "Neutral";
 		}
 		else{
