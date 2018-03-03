@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-
+	
 	let languagesList = ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Common", "Draconic", "Dwarven", "Elven", "Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", "Infernal", "Orc", "Sylvan", "Terran", "Undercommon"]; 
 	let classList = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorceror", "Wizard"];
 
@@ -79,6 +79,29 @@ $(document).ready(()=>{
 		}
 	}
 
+	function chooseHpOrSkill(){
+		let choice = roll(2);
+		if(choice == 1){
+			console.log("Chose skill point");
+			player.skillPoints++;
+		}
+		else{
+			console.log("Chose hit point");
+			player.maxHitPoints++;
+		}
+	}
+
+	function skillPointsGen(base){
+		player.skillPoints = base + player.modifiers.intelligence;
+		if (player.skillPoints < 1){
+			player.skillPoints = 1;
+		}
+		if (player.race === "Human"){
+			player.skillPoints ++;
+		}
+		chooseHpOrSkill();
+	}
+
 //Class Selection Functions----------------------------------------------------------------
 	function attRangeForClassGeneration(att){
 		att = att-10;
@@ -146,47 +169,58 @@ $(document).ready(()=>{
 			case (selector < barbarian):
 				tempClass="Barbarian";
 				hitDieGen(12);
+				skillPointsGen(4);
 				break;
 			case (selector < bard):
 				tempClass="Bard";
 				hitDieGen(8);
+				skillPointsGen(4);
 				break;
 			case (selector < cleric):
 				tempClass="Cleric";
 				hitDieGen(8);
+				skillPointsGen(2);
 				break;
 			case (selector < druid):
 				tempClass="Druid";
 				hitDieGen(8);
+				skillPointsGen(4);
 				player.languages.push("Druidic");
 				break;
 			case (selector < fighter):
 				tempClass="Fighter";
 				hitDieGen(10);
+				skillPointsGen(2);
 				break;
 			case (selector < monk):
 				tempClass="Monk";
 				hitDieGen(8);
+				skillPointsGen(4);
 				break;
 			case (selector < paladin):
 				tempClass="Paladin";
 				hitDieGen(10);
+				skillPointsGen(2);
 				break;
 			case (selector < ranger):
 				tempClass="Ranger";
 				hitDieGen(10);
+				skillPointsGen(6);
 				break;
 			case (selector < rogue):
 				tempClass="Rogue";
 				hitDieGen(8);
+				skillPointsGen(8);
 				break;
 			case (selector < sorceror):
 				tempClass="Sorceror";
 				hitDieGen(6);
+				skillPointsGen(2);
 				break;
 			case (selector < wizard):
 				tempClass="Wizard";
 				hitDieGen(6);
+				skillPointsGen(2);
 				break;
 			default:
 				tempClass = "Dumpster Fire";
