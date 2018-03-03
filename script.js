@@ -31,7 +31,8 @@ $(document).ready(()=>{
 		alignment: "",
 		maxHitPoints: 0,
 		currentHitPoints: 0,
-		skillRanks: []
+		skillRanks: [],
+		skillPoints: 0
 	}
 
 	function start(){
@@ -92,132 +93,100 @@ $(document).ready(()=>{
 
 	function getCharacterClass(squaresArray, sumSquares){
 		console.log("the squares array: " + squaresArray);
-		let barbarian = squaresArray[0]+squaresArray[1]+squaresArray[2];
-		let bard = squaresArray[1]+squaresArray[3]+squaresArray[5]+barbarian;
-		let cleric = squaresArray[4]+squaresArray[5]+squaresArray[0]+bard;
-		let druid = squaresArray[4]+squaresArray[1]+squaresArray[2]+cleric;
-		let fighter = barbarian + druid + (player.scores.strength-9);
-		let monk = squaresArray[0]+squaresArray[1]+squaresArray[4]+fighter;
-		let paladin = squaresArray[5]+squaresArray[0]+squaresArray[2]+monk;
-		let ranger = monk - fighter + paladin;
-		let rogue = druid - cleric + ranger;
-		let sorceror = rogue + squaresArray[5] + squaresArray[1] + squaresArray[2];
-		let wizard = sorceror + squaresArray[3] + squaresArray[2] + squaresArray [1];	
+		let barbarian = 0;
+		if(player.scores.strength > 11 && player.scores.constitution > 9){
+			barbarian = squaresArray[0]+squaresArray[1]+squaresArray[2];
+		}
+		let bard = 0 + barbarian;
+		if (player.scores.charisma > 12 && player.scores.dexterity > 9){
+			bard += squaresArray[1]+squaresArray[3]+squaresArray[5]
+		}
+		let cleric = 0 + bard;
+		if (player.scores.wisdom > 11){
+			cleric += squaresArray[4]+squaresArray[5]+squaresArray[0];
+		}
+		let druid = 0 + cleric; 
+		if (player.scores.wisdom > 11){
+			druid += squaresArray[4]+squaresArray[1]+squaresArray[2];
+		}
+		let fighter = 0 + druid;
+		if (player.scores.strength > 11){
+			fighter += squaresArray[0]+squaresArray[1]+squaresArray[2];
+		}
+		let monk = 0 + fighter;
+		if (player.scores.strength > 11 && player.scores.wisdom > 9 && player.scores.dexterity > 11){
+			monk += squaresArray[0]+squaresArray[1]+squaresArray[4];
+		}
+		let paladin = 0+monk;
+		if (player.scores.strength > 12 && player.scores.charisma > 12){
+			paladin += squaresArray[5]+squaresArray[0]+squaresArray[2];
+		}
+		let ranger = 0 + paladin;
+		if ((player.scores.strength > 11 || player.scores.dexterity > 10) && player.scores.wisdom > 12){
+			ranger += squaresArray[0]+squaresArray[1]+squaresArray[4];
+		}
+		let rogue = 0 + ranger;
+		if (player.scores.dexterity > 11){
+			rogue += squaresArray[4]+squaresArray[1]+squaresArray[2];	
+		}
+		let sorceror = rogue + 0;
+		if (player.scores.charisma > 12){
+			sorceror += squaresArray[5] + squaresArray[1] + squaresArray[2];
+		}
+		let wizard = sorceror + 0;
+		if (player.scores.intelligence > 12){
+			wizard += squaresArray[3] + squaresArray[2] + squaresArray [1];	
+		}
 		let tempClass = "";
 		let selector = roll(wizard);
 		console.log("The number for class gen: " + selector);
 		console.log(barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorceror, wizard);
+
 		switch(true){
-			case (selector <= barbarian):
-				if (player.scores.strength < 12 && player.scores.constitution < 10){
-					console.log("Attempt Barbarian");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Barbarian";
-					hitDieGen(12);
-				}
+			case (selector < barbarian):
+				tempClass="Barbarian";
+				hitDieGen(12);
 				break;
-			case (selector <= bard):
-				if (player.scores.charisma < 13 || player.scores.dexterity < 10){
-					console.log("Attempt Bard");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Bard";
-					hitDieGen(8);
-				}
+			case (selector < bard):
+				tempClass="Bard";
+				hitDieGen(8);
 				break;
-			case (selector <= cleric):
-				if (player.scores.wisdom < 12){
-					console.log("Attempt Cleric");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Cleric";
-					hitDieGen(8);
-				}
+			case (selector < cleric):
+				tempClass="Cleric";
+				hitDieGen(8);
 				break;
-			case (selector <= druid):
-				if (player.scores.wisdom < 12){
-					console.log("Attempt Druid");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Druid";
-					hitDieGen(8);
-					player.languages.push("Druidic");
-				}
+			case (selector < druid):
+				tempClass="Druid";
+				hitDieGen(8);
+				player.languages.push("Druidic");
 				break;
-			case (selector <= fighter):
-				if (player.scores.strength < 12){
-					console.log("Attempt Fighter");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Fighter";
-					hitDieGen(10);
-				}
+			case (selector < fighter):
+				tempClass="Fighter";
+				hitDieGen(10);
 				break;
-			case (selector <= monk):
-				if (player.scores.strength < 12 || player.scores.wisdom < 10 || player.scores.dexterity < 12){
-					console.log("Attempt Monk");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Monk";
-					hitDieGen(8);
-				}
+			case (selector < monk):
+				tempClass="Monk";
+				hitDieGen(8);
 				break;
-			case (selector <= paladin):
-				if (player.scores.strength < 12 || player.scores.charisma < 13){
-					console.log("Attempt Paladin");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Paladin";
-					hitDieGen(10);
-				}
+			case (selector < paladin):
+				tempClass="Paladin";
+				hitDieGen(10);
 				break;
-			case (selector <= ranger):
-				if (player.scores.strength < 12 || player.scores.dexterity < 10){
-					console.log("Attempt Ranger");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Ranger";
-					hitDieGen(10);
-				}
+			case (selector < ranger):
+				tempClass="Ranger";
+				hitDieGen(10);
 				break;
-			case (selector <= rogue):
-				if (player.scores.dexterity < 12){
-					console.log("Attempt Rogue");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Rogue";
-					hitDieGen(8);
-				}
+			case (selector < rogue):
+				tempClass="Rogue";
+				hitDieGen(8);
 				break;
-			case (selector <= sorceror):
-				if (player.scores.charisma < 13){
-					console.log("Attempt Sorceror");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Sorceror";
-					hitDieGen(6);
-				}
+			case (selector < sorceror):
+				tempClass="Sorceror";
+				hitDieGen(6);
 				break;
-			case (selector <= wizard):
-				if (player.scores.intelligence < 13){
-					console.log("Attempt Wizard");
-					getCharacterClass(squaresArray);
-				}
-				else{
-					tempClass="Wizard";
-					hitDieGen(6);
-				}
+			case (selector < wizard):
+				tempClass="Wizard";
+				hitDieGen(6);
 				break;
 			default:
 				tempClass = "Dumpster Fire";
@@ -253,7 +222,8 @@ $(document).ready(()=>{
 		}
 		else{
 			player.favoredClasses.push(tempFavoredClass);
-			if(player.class == "Half-Elf" && player.favoredClasses.length < 2){
+			if(player.race == "Half-Elf" && player.favoredClasses.length < 2){
+				console.log("Half-Elf Route hit.");
 				selectFavoredClass();
 			}
 		}
@@ -575,7 +545,11 @@ $(document).ready(()=>{
 				classText += player.classes[i].class + ": ";
 				classText += player.classes[i].level + " "; 
 		}
-		$("#preferred-classes").text(player.favoredClasses[0]);
+		let preferredText = "";
+		player.favoredClasses.forEach(text=>{
+			preferredText += text + " ";
+		}) 
+		$("#preferred-classes").text(preferredText);
 		$("#classes").text(classText);
 	}
 
