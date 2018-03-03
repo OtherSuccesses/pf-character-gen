@@ -1,0 +1,32 @@
+{
+  "name": "pf-character-gen",
+  "version": "1.0.0",
+  "description": "A silly pathfinder character generator. Hoping to expand it to other game functionality.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OtherSuccesses/pf-character-gen.git"
+  },
+  "keywords": [
+    "Pathfinder",
+    "PC",
+    "RPG",
+    "random"
+  ],
+  "author": "Vytas Rudzinskas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OtherSuccesses/pf-character-gen/issues"
+  },
+  "homepage": "https://github.com/OtherSuccesses/pf-character-gen#readme"
+}
