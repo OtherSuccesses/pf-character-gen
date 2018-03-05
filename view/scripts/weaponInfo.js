@@ -744,5 +744,1328 @@ let weaponList = {
 				}
 			}
 		}
+	},
+	martial:{
+		lightMelee:{
+			throwingAxe:{
+				name: "Throwing Axe",
+				cost: {
+					denomination: "gp",
+					amount: 8
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 10,
+				weight: 2
+			},
+			lightHammer:{
+				name: "Light Hammer",
+				cost: {
+					denomination: "gp",
+					amount: 1
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 20,
+				weight: 2
+			},
+			handAxe:{
+				name: "Handaxe",
+				cost: {
+					denomination: "gp",
+					amount: 6
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 3
+			},
+			kukri:{
+				name: "Kukri",
+				cost: {
+					denomination: "gp",
+					amount: 8
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 3,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			},
+			lightPick:{
+				name: "Light Pick",
+				cost: {
+					denomination: "gp",
+					amount: 4
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 4
+				},
+				range: 0,
+				weight: 3
+			},
+			sap:{
+				name: "Sap",
+				cost: {
+					denomination: "gp",
+					amount: 1
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			},
+			lightShield:{
+				name: "Light Shield",
+				cost: {
+					denomination: "gp",
+					amount: 0
+				},
+				dmg:{
+					small:{
+						amount: 2,
+						multiple: 1
+					},
+					medium:{
+						amount: 3,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 0
+			},
+			spikedArmor:{
+				name: "Spiked Armor",
+				cost: {
+					denomination: "gp",
+					amount: 0
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 0
+			},
+			spikedLightShield:{
+				name: "Spiked Light Shield",
+				cost: {
+					denomination: "gp",
+					amount: 0
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 0
+			},
+			starknife:{
+				name: "Starknife",
+				cost: {
+					denomination: "gp",
+					amount: 24
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 20,
+				weight: 3
+			},
+			shortSword:{
+				name: "Short Sword",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			}
+		},
+		melee1H:{
+			battleaxe:{
+				name: "Battleax",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 6
+			},
+			flail:{
+				name: "Flail",
+				cost: {
+					denomination: "gp",
+					amount: 8
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 5
+			},
+			longsword:{
+				name: "Longsword",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 4
+			},
+			heavyPick:{
+				name: "Heavy Pick",
+				cost: {
+					denomination: "gp",
+					amount: 8
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 4
+				},
+				range: 0,
+				weight: 6
+			},
+			rapier:{
+				name: "Rapier",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 3,
+					multiple: 1
+				},
+				range: 0,
+				weight: 2
+			},
+			scimitar:{
+				name: "Scimitar",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 3,
+					multiple: 2
+				},
+				range: 0,
+				weight: 4
+			},
+			heavyShield:{
+				name: "Heavy Shield",
+				cost: {
+					denomination: "gp",
+					amount: 0
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 0
+			},
+			spikedHeavyShield:{
+				name: "Spiked Heavy Shield",
+				cost: {
+					denomination: "gp",
+					amount: 0
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 0
+			},
+			swordCane:{
+				name: "Sword Cane",
+				cost: {
+					denomination: "gp",
+					amount: 45
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 4
+			},
+			trident:{
+				name: "Trident",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 10,
+				weight: 4
+			},
+			warhammer:{
+				name: "Warhammer",
+				cost: {
+					denomination: "gp",
+					amount: 12
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 5
+			}
+		},
+		melee2H:{
+			bardiche:{
+				name: "Bardiche",
+				cost: {
+					denomination: "gp",
+					amount: 13
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 14
+			},
+			becDeCorbin:{
+				name: "Bec de Corbin",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["B", "P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			},
+			bill:{
+				name: "Bill",
+				cost: {
+					denomination: "gp",
+					amount: 11
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 11
+			},
+			falchion:{
+				name: "Falchion",
+				cost: {
+					denomination: "gp",
+					amount: 75
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 2
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 8
+			},
+			heavyFlail:{
+				name: "Heavy Flail",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 10
+			},
+			glaive:{
+				name: "Glaive",
+				cost: {
+					denomination: "gp",
+					amount: 8
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 10
+			},
+			glaiveGuisarme:{
+				name: "Glaive-Guisarme",
+				cost: {
+					denomination: "gp",
+					amount: 12
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 10
+			},
+			greataxe:{
+				name: "Greataxe",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 10,
+						multiple: 1
+					},
+					medium:{
+						amount: 12,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			},
+			greatclub:{
+				name: "Greatclub",
+				cost: {
+					denomination: "gp",
+					amount: 5
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 8
+			},
+			greatsword:{
+				name: "Greatsword",
+				cost: {
+					denomination: "gp",
+					amount: 50
+				},
+				dmg:{
+					small:{
+						amount: 10,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 2
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 8
+			},
+			guisarme:{
+				name: "Guisarme",
+				cost: {
+					denomination: "gp",
+					amount: 9
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 2
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			},
+			halberd:{
+				name: "Halberd",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["P", "S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			},
+			lucerneHammer:{
+				name: "Lucerne Hammer",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 10,
+						multiple: 1
+					},
+					medium:{
+						amount: 12,
+						multiple: 1
+					},
+					type:["B", "P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 12
+			},
+			lance:{
+				name: "Lance",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 10
+			},
+			ranseur:{
+				name: "Ranseur",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 2
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			},
+			scythe:{
+				name: "Scythe",
+				cost: {
+					denomination: "gp",
+					amount: 18
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 2
+					},
+					type:["P", "S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 4
+				},
+				range: 0,
+				weight: 10
+			},
+		},
+		ranged:{
+			chakram:{
+				name: "Chakram",
+				cost: {
+					denomination: "gp",
+					amount: 1
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 30,
+				weight: 1,
+				ammuntion: "N/A"
+			},
+			longbow:{
+				name: "Longbow",
+				cost: {
+					denomination: "gp",
+					amount: 75
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 100,
+				weight: 3,
+				ammuntion: "Arrow"
+			},
+			compositeLongbow:{
+				name: "Composite Longbow",
+				cost: {
+					denomination: "gp",
+					amount: 100
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 110,
+				weight: 1,
+				ammuntion: "Arrow"
+			},
+			pilum:{
+				name: "Pilum",
+				cost: {
+					denomination: "gp",
+					amount: 5
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 20,
+				weight: 4,
+				ammuntion: "N/A"
+			},
+			shortbow:{
+				name: "Shortbow",
+				cost: {
+					denomination: "gp",
+					amount: 30
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 60,
+				weight: 2,
+				ammuntion: "Arrow"
+			},
+			compositeShortbow:{
+				name: "Composite Shortbow",
+				cost: {
+					denomination: "gp",
+					amount: 75
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 70,
+				weight: 2,
+				ammuntion: "Arrow"
+			}
+		},
+		ammunition:{
+			arrow:{
+
+			}
+		}
+	},
+	exotic:{
+		lightMelee:{
+			swordbreakerDagger:{
+				name: "Swordbreaker Dagger",
+				cost: {
+					denomination: "gp",
+					amount: 10
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 3
+			},
+			kama:{
+				name: "Kama",
+				cost: {
+					denomination: "gp",
+					amount: 2
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			},
+			nunchaku:{
+				name: "Nunchaku",
+				cost: {
+					denomination: "gp",
+					amount: 2
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			},
+			sai:{
+				name: "Sai",
+				cost: {
+					denomination: "gp",
+					amount: 1
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 1
+			},
+			siangham:{
+				name: "Siangham",
+				cost: {
+					denomination: "gp",
+					amount: 3
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 1
+			}
+		},
+		melee1H:{
+			falcata:{
+				name: "Falcata",
+				cost: {
+					denomination: "gp",
+					amount: 18
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 3
+				},
+				range: 0,
+				weight: 4
+			},
+			khopesh:{
+				name: "Khopesh",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 8
+			},
+			bastardSword:{
+				name: "Bastard Sword",
+				cost: {
+					denomination: "gp",
+					amount: 35
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 6
+			},
+			dwarvenWaraxe:{
+				name: "Dwarven Waraxe",
+				cost: {
+					denomination: "gp",
+					amount: 30
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 8
+			},
+			whip:{
+				name: "Whip",
+				cost: {
+					denomination: "gp",
+					amount: 1
+				},
+				dmg:{
+					small:{
+						amount: 2,
+						multiple: 1
+					},
+					medium:{
+						amount: 3,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 2
+			}
+		}
 	}
 }
