@@ -11,7 +11,11 @@ let classList = [
 		saveFort: 2,
 		saveRef: 0,
 		saveWill: 0,
-		weaponProficiency: 0
+		weaponProficiency: {
+			simple: ["All"],
+			martial: ["All"],
+			exotic: ["None"]
+		}
 	},{
 		id: 2,
 		name: "Bard",
