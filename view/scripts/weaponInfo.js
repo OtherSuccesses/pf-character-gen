@@ -2066,6 +2066,426 @@ let weaponList = {
 				range: 0,
 				weight: 2
 			}
+		},
+		melee2H:{
+			orcDoubleAxe:{
+				name: "Orc Double Axe",
+				cost: {
+					denomination: "gp",
+					amount: 60
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 15
+			},
+			spikedChain:{
+				name: "Spiked Chain",
+				cost: {
+					denomination: "gp",
+					amount: 25
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 2
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 10
+			},
+			elvenCurvedBlade:{
+				name: "Elven Curved Blade",
+				cost: {
+					denomination: "gp",
+					amount: 80
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 3,
+					multiple: 2
+				},
+				range: 0,
+				weight: 7
+			},
+			direFlail:{
+				name: "Dire Flail",
+				cost: {
+					denomination: "gp",
+					amount: 90
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 0,
+				weight: 10
+			},
+			gnomeHookedHammer:{
+				name: "Gnome Hooked Hammer",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["B", "P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 6
+			},
+			mancatcher:{
+				name: "Mancatcher",
+				cost: {
+					denomination: "gp",
+					amount: 15
+				},
+				dmg:{
+					small:{
+						amount: 1,
+						multiple: 1
+					},
+					medium:{
+						amount: 2,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 0,
+					multiple: 2
+				},
+				range: 0,
+				weight: 10
+			},
+			totemSpear:{
+				name: "Totem Spear",
+				cost: {
+					denomination: "gp",
+					amount: 25
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["P", "S"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 10,
+				weight: 9
+			},
+			twoBladedSword:{
+				name: "Two-Bladed Sword",
+				cost: {
+					denomination: "gp",
+					amount: 100
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 0,
+				weight: 10
+			},
+			dwarvenUrgrosh:{
+				name: "Dwarven Urgrosh",
+				cost: {
+					denomination: "gp",
+					amount: 50
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["S", "P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 0,
+				weight: 12
+			}
+		},
+		ranged:{
+			bola:{
+				name: "Bola",
+				cost: {
+					denomination: "gp",
+					amount: 5
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 10,
+				weight: 2,
+				ammunition: "N/A"
+			},
+			boomerang:{
+				name: "Boomerang",
+				cost: {
+					denomination: "gp",
+					amount: 3
+				},
+				dmg:{
+					small:{
+						amount: 4,
+						multiple: 1
+					},
+					medium:{
+						amount: 6,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 30,
+				weight: 3,
+				ammunition: "N/A"
+			},
+			doubleCrossbow:{
+				name: "Double Crossbow",
+				cost: {
+					denomination: "gp",
+					amount: 300
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 80,
+				weight: 18,
+				ammunition: "Bolt"
+			},
+			handCrossbow:{
+				name: "Hand Crossbow",
+				cost: {
+					denomination: "gp",
+					amount: 100
+				},
+				dmg:{
+					small:{
+						amount: 3,
+						multiple: 1
+					},
+					medium:{
+						amount: 4,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 30,
+				weight: 2,
+				ammunition: "Bolt"
+			},
+			repeatingHeavyCrossbow:{
+				name: "Repeating Heavy Crossbow",
+				cost: {
+					denomination: "gp",
+					amount: 400 
+				},
+				dmg:{
+					small:{
+						amount: 8,
+						multiple: 1
+					},
+					medium:{
+						amount: 10,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 120,
+				weight: 12,
+				ammunition: "Bolt"
+			},
+			repeatingLightCrossbow:{
+				name: "Repeating Light Crossbow",
+				cost: {
+					denomination: "gp",
+					amount: 250
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 2,
+					multiple: 2
+				},
+				range: 80,
+				weight: 6,
+				ammunition: "Bolt"
+			},
+			net:{
+				name: "Net",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 0,
+						multiple: 1
+					},
+					medium:{
+						amount: 0,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 1
+				},
+				range: 10,
+				weight: 6,
+				ammunition: "N/A"
+			},
+			halflingSlingStaff:{
+				name: "Halfling Sling Staff",
+				cost: {
+					denomination: "gp",
+					amount: 20
+				},
+				dmg:{
+					small:{
+						amount: 6,
+						multiple: 1
+					},
+					medium:{
+						amount: 8,
+						multiple: 1
+					},
+					type:["B"]
+				},
+				critical:{
+					range: 1,
+					multiple: 3
+				},
+				range: 80,
+				weight: 3,
+				ammunition: "Bullets"
+			}
 		}
 	}
 }
