@@ -1,3 +1,5 @@
+// Move all ammunition into one single category instead of under simple martial etc.
+
 let weaponList = {
 	simple: {
 		unarmed:{

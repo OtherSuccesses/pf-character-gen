@@ -16,9 +16,10 @@
 </head>
 <body>
 	<h1>Character Sheet</h1>
+	<p id="name-label">Name: <span id = "name"></span></p>
 	<div id="top-section">
 		<section id="ability-scores">
-			<table>
+			<table id = "ability-table">
 				<tr>
 					<th>Strength:</th>
 					<th id="str"></th>
@@ -52,26 +53,59 @@
 			</table>
 		</section>
 		<section id="character-basics">
-			<p id="name-label">Name: <span id = "name"></span></p>
 			<p id="race-label">Race: <span id = "race"></span></p>
 			<p id="alignment-label">Alignment: <span id = "alignment"></span></p>
 			<p id="size-label">Size: <span id = "size"></span></p>
 			<p id="gender-label">Gender: <span id = "gender"></span></p>
 			<p id="age-label">Age: <span id = "age"></span></p>
 		</section>
-		<div id = "language-div">
-			<p id= "languages-label">Languages: <span id = "languages"></span></p>
-		</div>
 		<section id ="classes-section">
 			<p id = "classes-label">Classes: <span id = "classes"></span></p>
 			<p id = "preferred-classes-label">Preferred Classes: <span id = "preferred-classes"></span></p>
 		</section>
+		<div id = "language-div">
+			<p id= "languages-label">Languages: <span id = "languages"></span></p>
+		</div>
+	</div>
+	<div id="basic-stats">
 		<div id = "hp-section">
 			<p id = "max-hp-label">Max Hit Points: <span id = "max-hp"></span></p>
 		</div>
-		<section id = "skills-section" class = "hidden">
-		</section>
 	</div>
+	<section id = "skills-section" class = "hidden">
+		<table id="skills-table">
+			<tr>
+				<th>Acrobatics:</th>
+				<th id="str"></th>
+				<th id="str-mod"></th>
+			</tr>
+			<tr>
+				<th>Appraise:</th>
+				<th id="dex"></th>
+				<th id="dex-mod"></th>
+			</tr>
+			<tr>
+				<th>Constitution:</th>
+				<th id="con"></th>
+				<th id="con-mod"></th>
+			</tr>
+			<tr>
+				<th>Intelligence:</th>
+				<th id="int"></th>
+				<th id="int-mod"></th>
+			</tr>
+			<tr>
+				<th>Wisdom:</th>
+				<th id="wis"></th>
+				<th id="wis-mod"></th>
+			</tr>
+			<tr>
+				<th>Charisma:</th>
+				<th id="cha"></th>
+				<th id="cha-mod"></th>
+			</tr>
+		</table>
+	</section>
 	<button id = "scores-roll">Roll Character</button>
 </body>
 </html>

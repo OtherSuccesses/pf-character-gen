@@ -6,3 +6,39 @@ th{
 	padding-left:6px;
 	padding-right:6px; 
 }
+
+#ability-scores{
+	float:left;
+	width:45%;
+}
+
+p{
+	margin:2px;
+	padding:2px;
+}
+
+#character-basics{
+	text-align: left;
+	display:block;
+	float:right;
+	width:45%;
+}
+
+#classes-section{
+	display:block;
+	clear:both;
+}
+
+#language-div{
+	display:block;
+	clear:both;
+}
+
+#top-section{
+	display:block;
+	width:90%;
+}
+
+.hidden{
+	display:none;
+}
