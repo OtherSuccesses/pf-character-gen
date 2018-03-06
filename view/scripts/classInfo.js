@@ -20,18 +20,36 @@ let classList = [
 		id: 2,
 		name: "Bard",
 		hitDie: 8,
-		skillPoints: 4,
-		classSkills: 0,
+		skillPoints: 6,
+		classSkills: ["Acrobatics", "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Intimidate", "Knowledge (Arcana)", "Knowledge (Dungeoneering)", "Knowledge (Engineering)", "Knowledge (Geography)", "Knowledge (History)", "Knowledge (Local)", "Knowledge (Nature)", "Knowledge (Nobility)", "Knowledge (Planes)", "Knowledge (Religion)", "Linguistics", "Perception", "Perform", "Profession", "Sense Motive", "Sleight of Hand", "Spellcraft", "Stealth", "Use Magic Device"],
 		talents: 0,
 		level: 1
+		baseAttackBonus:0,
+		saveFort:0,
+		saveRef:2,
+		saveWill:2,
+		weaponProficiency:{
+			simple:["All"],
+			martial:["Longsword", "Rapier", "Sap", "Short Sword", "Shortbow"],
+			exotic:["Whip"]
+		}
 	},{
 		id: 3,
 		name: "Cleric",
 		hitDie: 8,
 		skillPoints: 2,
-		classSkills: 0,
+		classSkills: ["Appraise", "Craft", "Diplomacy", "Heal", "Knowledge (Arcana)", "Knowledge (History)", "Knowledge (Nobility)", "Knowledge (Planes)", "Knowledge (Religion)", "Linguistics", "Profession", "Sense Motive", "Spellcraft"],
 		talents: 0,
 		level: 1
+		baseAttackBonus:0,
+		saveFort:2,
+		saveRef:0,
+		saveWill:2,
+		weaponProficiency:{
+			simple:["All"],
+			martial:["None"],
+			exotic:["None"]
+		}
 	},{
 		id: 4,
 		name: "Druid",
