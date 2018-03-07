@@ -734,9 +734,9 @@ let weaponList = {
 					quantity: 10
 				}
 			},
-			dart:{
-				dart:{
-					name: "Darts",
+			blowgunDart:{
+				blowgunDart:{
+					name: "Blowgun Darts",
 					cost: {
 						denomination: "sp",
 						amount: 5

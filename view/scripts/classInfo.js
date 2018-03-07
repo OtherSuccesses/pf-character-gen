@@ -55,7 +55,7 @@ let classList = [
 		name: "Druid",
 		hitDie: 8,
 		skillPoints: 4,
-		classSkills: 0,
+		classSkills: ["Climb", "Craft", "Fly", "Handle Animal", "Heal", "Knowledge (Geography)", "Knowledge (Nature)", "Perception", "Profession", "Ride", "Spellcraft", "Survival", "Swim"],
 		talents: 0,
 		level: 1
 	},{
