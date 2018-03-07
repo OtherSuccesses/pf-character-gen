@@ -2020,7 +2020,7 @@ let weaponList = {
 				range: 0,
 				weight: 6
 			},
-			dwarvenWaraxe:{
+			dwarvenWarAxe:{
 				name: "Dwarven Waraxe",
 				cost: {
 					denomination: "gp",
@@ -2487,6 +2487,31 @@ let weaponList = {
 				range: 80,
 				weight: 3,
 				ammunition: "Bullets"
+			},
+			shuriken:{
+				name: "Halfling Sling Staff",
+				cost: {
+					denomination: "sp",
+					amount: 2
+				},
+				dmg:{
+					small:{
+						amount: 1,
+						multiple: 1
+					},
+					medium:{
+						amount: 2,
+						multiple: 1
+					},
+					type:["P"]
+				},
+				critical:{
+					range: 1,
+					multiple: 2
+				},
+				range: 10,
+				weight: 0.1,
+				ammunition: "N/A"
 			}
 		}
 	}

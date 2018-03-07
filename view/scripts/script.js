@@ -1,6 +1,7 @@
 $(document).ready(()=>{
 	
 	function start(){
+		clearSkills();
 		clearLanguages();
 		clearClasses();
 		rollScores();
@@ -16,12 +17,15 @@ $(document).ready(()=>{
 		displayScoreModifiers();
 		displayBasicData();
 		displayLanguages();
+		displaySkills();
 		displayClass();
 		displayHP();
 		console.log(player);
 	}
 
-
+	function clearSkills(){
+		$("#skills-table").empty();
+	}
 	function clearLanguages(){
 		$("#languages").text("");
 	}
@@ -276,13 +280,14 @@ $(document).ready(()=>{
 		$("#race").text(player.race);
 		$("#alignment").text(player.alignment);
 		$("#gender").text(player.gender);
+		$("#age").text(player.age);
 	}
 
 	function displayClass(){
 		let classText = "";
 		for(i = 0; i < player.classes.length; i++){
-				classText += player.classes[i].name + ": ";
-				classText += player.classes[i].level + " "; 
+			classText += player.classes[i].name + ": ";
+			classText += player.classes[i].level + " "; 
 		}
 		let preferredText = "";
 		player.favoredClasses.forEach(text=>{
@@ -291,6 +296,32 @@ $(document).ready(()=>{
 		$("#preferred-classes").text(preferredText);
 		$("#classes").text(classText);
 	}
+
+	function displaySkills(){
+		$("#skills-section").removeClass("hidden");
+		$("#skills-table").html(skillTable());
+	}
+
+	function skillTable(){
+		let htmlToReturn = "";
+		for (i = 0; i < player.skillRanks.length; i++){
+			let skillRow= $("<tr>");
+			skillRow.addClass("skill-row");
+			skillRow.attr("id", "skill-" + player.skillRanks[i].name);
+			htmlToReturn += skillRow;
+		}
+		return htmlToReturn
+	}
+
+	// function skillTableRow(id){
+	// 	let htmlToReturn = "";
+	// 	let ability = player.skillRanks[id].ability;
+	// 	let name = player.skillRanks[id].name;
+	// 	htmlToReturn = "<tr><th>" + player.skillRanks[id].name +" </th><th>" + player.skillRanks[id].ranks +
+	// 	"</th><th>" + player.modifiers.[ability] + "</th><th> = " + (player.skillRanks[id].ranks +
+	// 		player.modifiers.[name].ability);
+
+	// }
 
 	function displayHP(){
 		$("#max-hp").text(player.maxHitPoints);
