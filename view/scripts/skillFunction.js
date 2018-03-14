@@ -7,6 +7,9 @@ function populateSkills(){
 	skillsList.forEach(skill=>{
 		let skillToAdd = Object.assign({}, skill);
 		skillToAdd.ranks = 0;
+		skillModifier = skillToAdd.ability;
+		console.log ("The skill being added modifier: " + skillModifier);
+		skillToAdd.modifier = player.modifiers[skillModifier];
 		player.skillRanks.push(skillToAdd);
 	});
 }
