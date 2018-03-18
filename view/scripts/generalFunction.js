@@ -4,7 +4,7 @@ function roll(max){
 
 	function hitDieGen(max){
 		if(player.classes[0].level !== 1){
-			player.maxHitPoints += roll(max);
+			player.maxHitPoints += roll(max)+1;
 		}
 		else{
 			player.maxHitPoints = max;

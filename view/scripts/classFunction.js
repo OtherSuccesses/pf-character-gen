@@ -72,7 +72,7 @@
 					break;
 				case (selector < bard):
 					tempClass="Bard";
-					skillPointsGen(4);
+					skillPointsGen(6);
 					break;
 				case (selector < cleric):
 					tempClass="Cleric";
@@ -104,7 +104,8 @@
 					skillPointsGen(8);
 					break;
 				case (selector < sorceror):
-					tempClass="Sorceror";					skillPointsGen(2);
+					tempClass="Sorceror";
+					skillPointsGen(2);
 					break;
 				case (selector < wizard):
 					tempClass="Wizard";
@@ -162,6 +163,11 @@
 		function selectClass(){
 			console.log("at select class:" + player.favoredClasses);
 			player.classes.push(findClass(player.favoredClasses[0]));
+			let levelSum = 0;
+			player.classes.forEach(pcRole=>{
+				levelSum += pcRole.level;
+			});
+			player.totalLevels = levelSum;
 			hitDieGen(player.classes[0].hitDie);
 			chooseHpOrSkill();
 		}

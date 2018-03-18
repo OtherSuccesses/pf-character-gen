@@ -18,6 +18,7 @@ let languagesList = ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Common",
 			wisdom : 0,
 			charisma : 0
 		},
+		totalLevels: 0,
 		race: "N/A",
 		size: "Medium",
 		age: 20,

@@ -25,6 +25,7 @@ $(document).ready(()=>{
 
 	function clearSkills(){
 		$("#skills-table").empty();
+		player.skillRanks = [];
 	}
 	function clearLanguages(){
 		$("#languages").text("");
@@ -292,14 +293,16 @@ $(document).ready(()=>{
 		let preferredText = "";
 		player.favoredClasses.forEach(text=>{
 			preferredText += text + " ";
-		}) 
+		});
 		$("#preferred-classes").text(preferredText);
 		$("#classes").text(classText);
 	}
 
 	function displaySkills(){
 		$("#skills-section").removeClass("hidden");
-		$("#skills-table").html("");
+		$("#skills-section").empty();
+		let skillSectionTable = $("<table></table>").attr("id", "skills-table"); 
+		$("#skills-section").append(skillSectionTable);
 		let skillsToDisplay = skillTable();
 		for(i = 0; i < skillsToDisplay.length; i++){
 			$("#skills-table").append(skillsToDisplay[i]);
@@ -308,17 +311,23 @@ $(document).ready(()=>{
 
 	function skillTable(){
 		let htmlToReturn = [];
+		let skillTableHeader = $("<tr></tr>").addClass("skill-header");
+		let skillName = $("<th></th>").addClass("skill-data-name").text("Skill Name");
+		let skillRanks = $("<th></th>").addClass("skill-data-ranks").text("Ranks");
+		let skillMod = $("<th></th>").addClass("skill-data-mods").text("Mods");
+		let skillTotal = $("<th></th>").text("Total");
+		skillTableHeader.append(skillName, skillRanks, skillMod, skillTotal);
+		htmlToReturn[0] = skillTableHeader;
 		for (i = 0; i < player.skillRanks.length; i++){
 			let skillRow= $("<tr></tr>").addClass("skill-row");
 			skillRow.attr("id", "skill-" + player.skillRanks[i].id);
-			let skillName = $("<th></th>").addClass("skill-data-name").text(player.skillRanks[i].name);
-			let skillRanks = $("<th></th>").addClass("skill-data-ranks").text(player.skillRanks[i].ranks);
-			let skillMod = $("<th></th>").addClass("skill-data-mods").text(player.skillRanks[i].modifier);
-			let skillTotal = $("<th></th>").text(player.skillRanks[i].ranks + player.skillRanks[i].modifier);
+			skillName = $("<th></th>").addClass("skill-data-name").text(player.skillRanks[i].name);
+			skillRanks = $("<th></th>").addClass("skill-data-ranks").text(player.skillRanks[i].ranks);
+			skillMod = $("<th></th>").addClass("skill-data-mods").text(player.skillRanks[i].modifier);
+			skillTotal = $("<th></th>").text(player.skillRanks[i].ranks + player.skillRanks[i].modifier);
 			skillRow.append(skillName, skillRanks, skillMod, skillTotal);
 			htmlToReturn.push(skillRow);
 		}
-		console.log(htmlToReturn);
 		return htmlToReturn
 	}
 
@@ -337,8 +346,6 @@ $(document).ready(()=>{
 	}
 
 //End Display Functions---------------------------------------
-
-
 
 //On click makes all the functions happen
 	$("#scores-roll").on("click",()=>{
