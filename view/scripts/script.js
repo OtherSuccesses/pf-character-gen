@@ -181,10 +181,10 @@ $(document).ready(()=>{
 		else{
 			order = "Chaotic";
 		}
-		if (morality <= 3){
+		if (morality <= 2){
 			morality = "Good";
 		} 
-		else if (morality <= 5){
+		else if (morality <= 4){
 			morality = "Neutral";
 		}
 		else{

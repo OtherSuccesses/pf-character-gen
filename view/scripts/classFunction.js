@@ -14,7 +14,7 @@
 			return att;
 		}
 
-		function getCharacterClass(squaresArray, sumSquares){
+		function getCharacterClass(squaresArray){
 			console.log("the squares array: " + squaresArray);
 			let barbarian = 0;
 			if(player.scores.strength > 11 && player.scores.constitution > 9){
@@ -130,9 +130,7 @@
 			for(i = 0; i < 6; i++){
 				attObjSquare[i] = attRangeForClassGeneration(attObjSquare[i]); 
 			}
-			let squareTotals = attObjSquare.reduce(sumScores, 0);
-
-			let tempClass = getCharacterClass(attObjSquare, squareTotals)
+			let tempClass = getCharacterClass(attObjSquare)
 			return tempClass;	
 		}
 

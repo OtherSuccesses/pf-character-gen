@@ -66,3 +66,18 @@ function getSkillsFromClass(){
 	}
 	player.skillPoints = 0;
 }
+
+
+//skillSelectionFunction
+//get all preferred skills
+//If it's a bard make sure the first skill they take is a perform skill
+//--Go to the subtype to select
+//Then get the selector for general skill or preferred skill
+//use the selector roll again to determine which skill is to be increased
+
+//if the skill selected has subtypes go to the subtype selection
+//return the subtype skill as a new object
+
+//with the subtypes slice it into the array of skills
+
+//skill with subtype selection
