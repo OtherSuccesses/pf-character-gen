@@ -13,6 +13,7 @@ $(document).ready(()=>{
 		selectAlignment();
 		selectGender();
 		selectSkills();
+		personalityGen();
 		displayScores();
 		displayScoreModifiers();
 		displayBasicData();
